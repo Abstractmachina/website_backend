@@ -2,19 +2,19 @@ import path from 'path'
 
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
 import { webpackBundler } from '@payloadcms/bundler-webpack'
-import { slateEditor } from '@payloadcms/richtext-slate'
 import { buildConfig } from 'payload/config'
 
 import Users from './collections/Users';
 import Media from './collections/Media';
 import Pages from './collections/Pages';
+import { lexicalEditor } from '@payloadcms/richtext-lexical'
 
 export default buildConfig({
   admin: {
     user: Users.slug,
     bundler: webpackBundler(),
   },
-  editor: slateEditor({}),
+  editor: lexicalEditor({}),
   collections: [
     Users,
     Pages,

@@ -1,6 +1,7 @@
 import { CollectionConfig } from "payload/types";
 import Hero from "../blocks/Hero";
 import TwoColumn from "../blocks/TwoColumn";
+import SimpleRichText from "../blocks/SimpleRichText";
 
 const Pages : CollectionConfig = {
     slug: 'pages',
@@ -30,7 +31,8 @@ const Pages : CollectionConfig = {
             type: 'blocks',
             blocks: [
                 Hero,
-                TwoColumn
+                TwoColumn,
+                SimpleRichText
             ],
         }
     ],
