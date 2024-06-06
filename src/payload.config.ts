@@ -8,6 +8,9 @@ import Users from './collections/Users';
 import Media from './collections/Media';
 import Pages from './collections/Pages';
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import BlogPosts from './collections/BlogPosts';
+import Header from './globals/Header';
+import Footer from './globals/Footer';
 
 export default buildConfig({
   admin: {
@@ -19,6 +22,11 @@ export default buildConfig({
     Users,
     Pages,
     Media,
+    BlogPosts,
+  ],
+  globals: [
+    Header,
+    Footer,
   ],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
