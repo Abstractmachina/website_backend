@@ -1,12 +1,9 @@
+import { GlobalConfig } from "payload/types";
 
-const Footer: any = {
+const Footer: GlobalConfig = {
     slug: 'footer',
     access: {
         read: () => true
-    },
-    labels: {
-        singular: 'Footer',
-        plural: 'Footers',
     },
     fields: [
         {
