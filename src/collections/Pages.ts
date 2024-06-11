@@ -3,6 +3,7 @@ import Hero from "../blocks/Hero";
 import TwoColumn from "../blocks/TwoColumn";
 import SimpleRichText from "../blocks/SimpleRichText";
 import RecentBlogPosts from "../blocks/RecentBlogPosts";
+import revalidate from "../util/revalidate";
 
 const Pages : CollectionConfig = {
     slug: 'pages',
@@ -38,6 +39,11 @@ const Pages : CollectionConfig = {
             ],
         }
     ],
+    hooks: {
+        afterChange: [
+            ({ req: { payload}, doc }) => revalidate(['pages']),
+        ],
+    },
     
 }
 

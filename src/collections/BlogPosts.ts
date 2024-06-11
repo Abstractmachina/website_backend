@@ -1,4 +1,5 @@
 import { CollectionConfig } from "payload/types";
+import revalidate from "../util/revalidate";
 
 const BlogPosts: CollectionConfig = {
     slug: "blogPosts",
@@ -30,6 +31,11 @@ const BlogPosts: CollectionConfig = {
             required: true
         },
     ],
+    hooks: {
+        afterChange: [
+            ({ req: { payload}, doc }) => revalidate(['blogPosts']),
+        ],
+    },
 }
 
 export default BlogPosts;
