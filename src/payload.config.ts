@@ -44,7 +44,7 @@ export default buildConfig({
     cloudStorage({
       enabled: true,
       collections: {
-        'media': {
+        media: {
           adapter: bunnyStorage({
 						zone: 'taos-storage',
 						region: "default",
