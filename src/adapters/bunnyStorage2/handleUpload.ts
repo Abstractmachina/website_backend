@@ -18,6 +18,7 @@ export const getHandleUpload = ({
   prefix = '',
   collection
 }: Args): HandleUpload => {
+  
   const key = this.getKey(data.filename);
 		const url = `https://${this.regionPrefix}storage.bunnycdn.com/${this.config.zone}/media/${key}`;
 		const response = await fetch(url, {

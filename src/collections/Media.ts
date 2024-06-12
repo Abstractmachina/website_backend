@@ -9,7 +9,11 @@ const Media : CollectionConfig = {
     access: {
         read: () => true,
     },
-    upload: true, 
+    upload: {
+        staticURL: "https://taos-pullzone.b-cdn.net/media",
+        staticDir: "media",
+        disableLocalStorage: true,
+    }, 
     fields: [
         {
             name: 'alt',

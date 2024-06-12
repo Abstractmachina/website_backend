@@ -1,5 +1,5 @@
-import type { StorageOptions } from '@google-cloud/storage'
-import { Storage } from '@google-cloud/storage'
+// import type { StorageOptions } from '@google-cloud/storage'
+// import { Storage } from '@google-cloud/storage'
 // import type { Adapter, GeneratedAdapter } from '../../types'
 import { Adapter, GeneratedAdapter } from '@payloadcms/plugin-cloud-storage/dist/types'
 import { getGenerateURL } from './generateURL'

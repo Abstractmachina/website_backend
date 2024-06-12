@@ -29,7 +29,7 @@ export class BunnyStorageAdapter implements GeneratedAdapter {
 
 	handleUpload: HandleUpload = async ({ data, file, collection }) => {
 		const key = this.getKey(data.filename);
-		const url = `https://${this.regionPrefix}storage.bunnycdn.com/${this.config.zone}/media/${key}`;
+		const url = `https://${this.regionPrefix}storage.bunnycdn.com/${this.config.zone}/${collection.slug}/${key}`;
 		const response = await fetch(url, {
 			method: "PUT",
 			headers: {
@@ -73,7 +73,7 @@ export class BunnyStorageAdapter implements GeneratedAdapter {
 				: new URL(
 						pullZone.startsWith("http") // Assume it's a full URL to BunnyCDN
 							? pullZone
-							: `https://${pullZone}.b-cdn.net`,
+							: `https://${pullZone}.b-cdn.net/${collection.slug}`,
 				  );
 
 		url.pathname = path.posix.join(
@@ -85,7 +85,7 @@ export class BunnyStorageAdapter implements GeneratedAdapter {
 		console.log("generateURL");
 		console.log(url);
 		console.log(url.href);
-		return url.href;
+		return `https://taos-pullzone.b-cdn.net/${collection.slug}/${filename}`;
 	};
 
 	staticHandler: StaticHandler = async (req, res, next) => {
