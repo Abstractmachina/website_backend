@@ -4,6 +4,7 @@ import TwoColumn from "../blocks/TwoColumn";
 import SimpleRichText from "../blocks/SimpleRichText";
 import RecentBlogPosts from "../blocks/RecentBlogPosts";
 import revalidate from "../util/revalidate";
+import Figure from "../blocks/Figure";
 
 const Projects : CollectionConfig = {
     slug: 'projects',
@@ -66,6 +67,7 @@ const Projects : CollectionConfig = {
                 TwoColumn,
                 SimpleRichText,
                 RecentBlogPosts,
+                Figure,
             ],
         }
     ],
