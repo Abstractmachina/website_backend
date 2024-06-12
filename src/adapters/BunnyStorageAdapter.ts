@@ -8,6 +8,7 @@ import type {
 } from "@payloadcms/plugin-cloud-storage/dist/types";
 import { getFilePrefix } from "@payloadcms/plugin-cloud-storage/dist/utilities/getFilePrefix";
 import path from "path";
+import { generateBunnyCdnToken } from "../util/authentication";
 
 /**
  * The BunnyStorageAdapter is a custom adapter for BunnyCDN. Prefer using the bunnyStorage function to create an instance of this class.
@@ -85,7 +86,8 @@ export class BunnyStorageAdapter implements GeneratedAdapter {
 		console.log("generateURL");
 		console.log(url);
 		console.log(url.href);
-		return `https://taos-pullzone.b-cdn.net/${collection.slug}/${filename}`;
+		const path1 = `/${collection.slug}/${filename}`
+		return generateBunnyCdnToken(path1, 3600);
 	};
 
 	staticHandler: StaticHandler = async (req, res, next) => {
@@ -98,7 +100,8 @@ export class BunnyStorageAdapter implements GeneratedAdapter {
 			const url = `https://${this.regionPrefix}storage.bunnycdn.com/${
 				this.config.zone
 			}/${path.posix.join(prefix, req.params.filename)}`;
-
+			console.log("statichandler");
+			console.log(url);
 			const response = await fetch(url, {
 				method: "GET",
 				headers: {

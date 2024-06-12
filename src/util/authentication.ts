@@ -7,7 +7,7 @@ import crypto from 'crypto';
  * @param {nnumber} expiry:time in seconds
  * @returns {string} full URL to file
  */
-export const generateBunnyCdnToken = (path : string, expiry : number) : string => {
+export const generateBunnyCdnToken = (path : string, expiry : number = 3600) : string => {
     const securityKey = process.env.BUNNY_CDN_KEY;
     // const path = '/pathto/file.jpg';
     
@@ -25,7 +25,8 @@ export const generateBunnyCdnToken = (path : string, expiry : number) : string =
     token = token.replace(/\+/g, '-').replace(/\//g, '_').replace(/\=/g, '');
     
     // Generate the URL
-    var url = `${process.env.BUNNY_PULLZONE}/${path}?token=${token}&expires=${expires}`;
+    var url = `${process.env.BUNNY_PULLZONE}${path}?token=${token}&expires=${expires}`;
+
 
     return url;
 }
