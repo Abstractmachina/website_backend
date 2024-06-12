@@ -12,6 +12,8 @@ export interface Config {
     pages: Page;
     media: Media;
     blogPosts: BlogPost;
+    projects: Project;
+    projecttags: Projecttag;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -84,6 +86,12 @@ export interface Page {
             blockName?: string | null;
             blockType: 'simpleRichText';
           }
+        | {
+            heading?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'recentBlogPosts';
+          }
       )[]
     | null;
   updatedAt: string;
@@ -130,6 +138,85 @@ export interface BlogPost {
     };
     [k: string]: unknown;
   };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "projects".
+ */
+export interface Project {
+  id: string;
+  title: string;
+  subtitle: string;
+  slug: string;
+  year: number;
+  location: string;
+  name: (string | Projecttag)[];
+  layout?:
+    | (
+        | {
+            heading?: string | null;
+            text?: string | null;
+            backgroundImage?: string | Media | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'hero';
+          }
+        | {
+            heading?: string | null;
+            text?: string | null;
+            image?: string | Media | null;
+            direction?: ('default' | 'reverse') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'twoColumn';
+          }
+        | {
+            body?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'simpleRichText';
+          }
+        | {
+            heading?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'recentBlogPosts';
+          }
+        | {
+            description?: string | null;
+            image?: string | Media | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'figure';
+          }
+      )[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "projecttags".
+ */
+export interface Projecttag {
+  id: string;
+  name: string;
   updatedAt: string;
   createdAt: string;
 }
