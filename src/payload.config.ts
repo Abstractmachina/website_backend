@@ -15,6 +15,8 @@ import Projects from './collections/Projects';
 import ProjectTags from './collections/ProjectTags';
 import { cloudStorage } from '@payloadcms/plugin-cloud-storage';
 import { bunnyStorage } from './adapters/BunnyStorageAdapter';
+import Videos from './collections/Videos';
+import { bunnyStream } from './adapters/BunnyStreamAdapter';
 
 export default buildConfig({
   admin: {
@@ -28,13 +30,15 @@ export default buildConfig({
     Media,
     BlogPosts,
     Projects,
-    ProjectTags
+    ProjectTags,
+    Videos,
   ],
   globals: [
     Header,
     Footer,
   ],
   typescript: {
+    declare:false,
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
   },
   graphQL: {
@@ -50,6 +54,16 @@ export default buildConfig({
 						region: "default",
 						accessKey: process.env.BUNNY_STORAGE_PASSWORD,
 						pullZone: new URL("https://taos-pullzone.b-cdn.net"),
+					}),
+					// disablePayloadAccessControl: true, // see docs for the adapter you want to use
+        },
+        videos: {
+          adapter: bunnyStream({
+						zone: 'taos-storage',
+            accessKey: process.env.BUNNY_STREAM_KEY,
+            libraryId: Number(process.env.BUNNY_STREAM_LIBRARY_ID),
+            zone: 'vz-9b20006b-401.b-cdn.net',
+            // collectionId?: string;
 					}),
 					// disablePayloadAccessControl: true, // see docs for the adapter you want to use
         },

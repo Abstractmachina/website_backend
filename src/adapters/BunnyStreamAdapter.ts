@@ -39,12 +39,12 @@ import type {
       this.adapterArgs = adapterArgs;
       const { collection } = adapterArgs;
       const videoFieldExists = collection.fields.some(
-        (f) => (f as FieldBase).name === "video"
+        (f) => (f as FieldBase).name === "providerData"
       );
   
       if (!videoFieldExists) {
         collection.fields.push({
-          name: "video",
+          name: "providerData",
           type: "json",
           admin: {
             hidden: true,
@@ -84,7 +84,7 @@ import type {
   
       if (!response.success) throw new Error(response.message);
   
-      data.video = {
+      data.providerData = {
         provider: "bunny",
         id: video.guid,
         libraryId: video.videoLibraryId || this.config.libraryId,
@@ -158,14 +158,8 @@ import type {
      * This is found under as "password" https://dash.bunny.net/storage and FTP & API Access tab. It is not the same as the BunnyCDN API Key.
      */
     accessKey: string;
-  
-    /**
-     * The libraryId to use
-     */
     libraryId: number;
-  
     collectionId?: string;
-  
     zone: string;
   }
   

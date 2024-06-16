@@ -5,6 +5,7 @@ import SimpleRichText from "../blocks/SimpleRichText";
 import RecentBlogPosts from "../blocks/RecentBlogPosts";
 import revalidate from "../util/revalidate";
 import Figure from "../blocks/Figure";
+import VideoBlock from "../blocks/VideoBlock";
 
 const Projects : CollectionConfig = {
     slug: 'projects',
@@ -68,6 +69,7 @@ const Projects : CollectionConfig = {
                 SimpleRichText,
                 RecentBlogPosts,
                 Figure,
+                VideoBlock,
             ],
         }
     ],

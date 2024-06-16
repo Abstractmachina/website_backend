@@ -14,6 +14,7 @@ export interface Config {
     blogPosts: BlogPost;
     projects: Project;
     projecttags: Projecttag;
+    videos: Video;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -205,6 +206,15 @@ export interface Project {
             blockName?: string | null;
             blockType: 'figure';
           }
+        | {
+            sourceType?: ('internal' | 'external') | null;
+            externalUrl?: string | null;
+            internalVideo?: string | Video | null;
+            caption?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'videoBlock';
+          }
       )[]
     | null;
   updatedAt: string;
@@ -219,6 +229,34 @@ export interface Projecttag {
   name: string;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "videos".
+ */
+export interface Video {
+  id: string;
+  title?: string | null;
+  caption?: string | null;
+  providerData?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -286,9 +324,4 @@ export interface Footer {
     | null;
   updatedAt?: string | null;
   createdAt?: string | null;
-}
-
-
-declare module 'payload' {
-  export interface GeneratedTypes extends Config {}
 }
