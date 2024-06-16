@@ -25,7 +25,7 @@ const generateBunnyUrl: CollectionAfterReadHook = async ({
   findMany,
 }) => {
   const filename = doc.filename;
-  const path = `/media/${filename}`;
+  const path = `media/${filename}`;
   const url = generateBunnyCdnToken(path);
 
   doc.url = url;

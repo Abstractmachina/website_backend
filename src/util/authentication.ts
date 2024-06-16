@@ -11,6 +11,11 @@ export const generateBunnyCdnToken = (path : string, expiry : number = 3600) : s
     const securityKey = process.env.BUNNY_CDN_KEY;
     // const path = '/pathto/file.jpg';
     
+    // path needs to start with slash, otherwise generated token will be incorrect.
+    if (!path.startsWith('/')) {
+        path = '/' + path;
+    }
+
     // Set the time of expiry to one hour from now
     var expires = Math.round(Date.now() / 1000) + expiry;
     
