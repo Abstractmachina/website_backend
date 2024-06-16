@@ -2,23 +2,12 @@ import payload from "payload";
 import { Block, CollectionAfterReadHook, FieldHook } from "payload/types";
 
 
-
-// const getFullVideo : FieldHook<> = (args) => {
-//     const {
-//         value, // Typed as `string` as shown above
-//         data, // Typed as a Partial of your ExampleDocumentType
-//         siblingData, // Typed as a Partial of SiblingDataType
-//         originalDoc, // Typed as ExampleDocumentType
-//         operation,
-//         req,
-//       } = args
-    
-// }
-
 const VideoBlock: Block = {
     slug: "videoBlock",
     fields: [
         {
+            // external types take just an url (e.g. vimeo, youtube)
+            // internal is for videos saved in the database and will return full documents
             name: 'sourceType', // required
             label: 'Source Type',
             type: 'radio', // required
@@ -61,27 +50,9 @@ const VideoBlock: Block = {
                 },
             },
             hooks: {
-                // beforeChange: [
-                //     async ({ value, operation }) => {
-                //         console.log('beforeChange');
-                //         console.log(value);
-                //         if (typeof value === 'string') {
-
-                //             const result = await payload.findByID({
-                //                 collection: 'videos',
-                //                 id: value,
-                //             });
-                //             console.log(result);
-                //             return result;
-                //         }
-
-                //         return value;
-                //     }
-                // ],
                 afterRead: [
                     async ({ value }) => {
-                    console.log("video block internal video after read")
-                        console.log(value);
+                        // return full video document when read. 
                         if (value) {
 
                             const result = await payload.findByID({
