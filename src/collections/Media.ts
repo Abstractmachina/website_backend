@@ -7,7 +7,7 @@ const generateThumbnailUrl = (filename: any) => {
   const path = `/media/${filename}`;
   console.log(path);
   // https://taos-pullzone.b-cdn.net/media/frontfacade_web.jpg
-  return generateBunnyCdnToken(path);
+  return generateBunnyCdnToken(path, 86400);
 };
 
 /**
