@@ -17,11 +17,17 @@ import { cloudStorage } from '@payloadcms/plugin-cloud-storage';
 import { bunnyStorage } from './adapters/BunnyStorageAdapter';
 import Videos from './collections/Videos';
 import { bunnyStream } from './adapters/BunnyStreamAdapter';
+import Dashboard from './views/Dashboard';
 
 export default buildConfig({
   admin: {
     user: Users.slug,
     bundler: webpackBundler(),
+    components: {
+      views: {
+        Dashboard: Dashboard,
+      }
+    }
   },
   editor: lexicalEditor({}),
   collections: [
@@ -57,16 +63,16 @@ export default buildConfig({
 					}),
 					// disablePayloadAccessControl: true, // see docs for the adapter you want to use
         },
-        videos: {
-          adapter: bunnyStream({
-						zone: 'taos-storage',
-            accessKey: process.env.BUNNY_STREAM_KEY,
-            libraryId: Number(process.env.BUNNY_STREAM_LIBRARY_ID),
-            zone: 'vz-9b20006b-401.b-cdn.net',
-            // collectionId?: string;
-					}),
-					// disablePayloadAccessControl: true, // see docs for the adapter you want to use
-        },
+        // videos: {
+        //   adapter: bunnyStream({
+				// 		zone: 'taos-storage',
+        //     accessKey: process.env.BUNNY_STREAM_KEY,
+        //     libraryId: Number(process.env.BUNNY_STREAM_LIBRARY_ID),
+        //     zone: 'vz-9b20006b-401.b-cdn.net',
+        //     // collectionId?: string;
+				// 	}),
+				// 	// disablePayloadAccessControl: true, // see docs for the adapter you want to use
+        // },
       },
     }),
   ],
