@@ -6,6 +6,8 @@ import RecentBlogPosts from "../blocks/RecentBlogPosts";
 import revalidate from "../util/revalidate";
 import Figure from "../blocks/Figure";
 import VideoBlock from "../blocks/VideoBlock";
+import OneColumn from "../blocks/OneColumn";
+import Link from "../blocks/Link";
 
 const Projects : CollectionConfig = {
     slug: 'projects',
@@ -15,6 +17,7 @@ const Projects : CollectionConfig = {
     },
     access: {
         read: () => true,
+        create: () => true,
     },
     admin: {
         useAsTitle:'title',
@@ -51,10 +54,9 @@ const Projects : CollectionConfig = {
             required: true
         },
         {
-            name: 'name',
-            label: 'Tags',
+            name: 'tags',
             type: 'relationship',
-            relationTo: 'projecttags',
+            relationTo: 'projectTags',
             hasMany: true,
             required: true,
             index: true,
@@ -65,11 +67,13 @@ const Projects : CollectionConfig = {
             type: 'blocks',
             blocks: [
                 Hero,
+                OneColumn,
                 TwoColumn,
                 SimpleRichText,
                 RecentBlogPosts,
                 Figure,
                 VideoBlock,
+                Link,
             ],
         }
     ],
