@@ -1,24 +1,25 @@
 import { CollectionConfig } from "payload/types";
 
 const ProjectTags: CollectionConfig = {
-    slug: "projecttags",
-    labels: {
-        singular: 'Project Tag',
-        plural: 'Project Tags',
+  slug: "projectTags",
+  access: {
+      read: () => true,
+      create: () => true,
+  },
+  labels: {
+    singular: "Project Tag",
+    plural: "Project Tags",
+  },
+  fields: [
+    {
+      name: "name",
+      type: "text",
+      required: true,
     },
-    fields: [
-        {
-            name: 'name',
-            label: 'Name',
-            type: 'text',
-            required: true,
-            }
-            ],
-    admin: {
-        useAsTitle: 'name'
-        ,
-    },
-    
-}
+  ],
+  admin: {
+    useAsTitle: "name",
+  },
+};
 
 export default ProjectTags;
