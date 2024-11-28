@@ -21,6 +21,8 @@ import Videos from "./collections/Videos";
 import { bunnyStream } from "./adapters/BunnyStreamAdapter";
 import Dashboard from "./views/Dashboard";
 import Expenses from "./collections/Expenses";
+import ExpenseTags from "./collections/ExpenseTags";
+import Test from "@/components/Test";
 
 export default buildConfig({
   admin: {
@@ -40,10 +42,19 @@ export default buildConfig({
             },
           ],
         },
+        resolve: {
+          ...config.resolve,
+          extensions: ['.js', '.jsx', '.ts', '.tsx'],
+          alias: {
+            ...config.resolve.alias,
+            '@': path.resolve(__dirname),
+          },
+        },
       };
     },
     components: {
       views: {
+        BeforeDashboard: Test,
         Dashboard: Dashboard,
       },
     },
@@ -57,7 +68,8 @@ export default buildConfig({
     Projects,
     ProjectTags,
     Videos,
-    Expenses
+    Expenses,
+    ExpenseTags,
   ],
   globals: [Header, Footer],
   typescript: {

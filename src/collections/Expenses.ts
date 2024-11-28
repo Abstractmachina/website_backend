@@ -1,4 +1,8 @@
+import ExpensesDefaultView from "@/views/ExpensesDefaultView";
+import TestView2 from "@/views/TestView2";
 import { CollectionConfig } from "payload/types";
+import dateFormat, { masks } from "dateformat";
+
 
 const Expenses: CollectionConfig = {
   slug: "expenses",
@@ -7,6 +11,24 @@ const Expenses: CollectionConfig = {
     read: () => true,
     update: () => true,
     delete: () => true,
+  },
+  admin: {
+    // components: {
+
+    //   views: {
+    //     Edit: {
+    //       // MyCustomTab: {
+    //       //   Component: ExpensesDefaultView,
+    //       //   path: "/test",
+    //       //   Tab: TestView2,
+    //       // },
+    //       Default: {
+    //         Component: ExpensesDefaultView,
+    //       }
+    //     }   
+        
+    //   }
+    // }
   },
   fields: [
     {
@@ -57,18 +79,20 @@ const Expenses: CollectionConfig = {
       ],
     },
     {
+      name: "tags",
+      type: "relationship",
+      relationTo: "expenseTags",
+      index: true,
+    },
+    {
       name: "comment",
       type: "textarea",
-      admin: {
-        position: "sidebar",
-      }
+
     },
     {
       name: "date",
       type: "date",
-      admin: {
-        position: "sidebar",
-      }
+      defaultValue: new Date().toISOString(),
     },
   ],
 }
