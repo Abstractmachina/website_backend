@@ -2,6 +2,7 @@ import ExpensesDefaultView from "@/views/ExpensesDefaultView";
 import TestView2 from "@/views/TestView2";
 import { CollectionConfig } from "payload/types";
 import dateFormat, { masks } from "dateformat";
+import SaveAndCloseButton from "@/components/ui/SaveAndCloseButton";
 
 
 const Expenses: CollectionConfig = {
@@ -13,7 +14,11 @@ const Expenses: CollectionConfig = {
     delete: () => true,
   },
   admin: {
-    // components: {
+    components: {
+      edit: {
+        SaveButton: SaveAndCloseButton,
+      }
+    }
 
     //   views: {
     //     Edit: {
