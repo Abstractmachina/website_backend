@@ -13,8 +13,10 @@ export interface Config {
     media: Media;
     blogPosts: BlogPost;
     projects: Project;
-    projecttags: Projecttag;
+    projectTags: ProjectTag;
     videos: Video;
+    expenses: Expense;
+    expenseTags: ExpenseTag;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -153,7 +155,7 @@ export interface Project {
   slug: string;
   year: number;
   location: string;
-  name: (string | Projecttag)[];
+  tags: (string | ProjectTag)[];
   layout?:
     | (
         | {
@@ -163,6 +165,13 @@ export interface Project {
             id?: string | null;
             blockName?: string | null;
             blockType: 'hero';
+          }
+        | {
+            heading?: string | null;
+            text?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'oneColumn';
           }
         | {
             heading?: string | null;
@@ -215,6 +224,13 @@ export interface Project {
             blockName?: string | null;
             blockType: 'videoBlock';
           }
+        | {
+            text?: string | null;
+            link?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'link';
+          }
       )[]
     | null;
   updatedAt: string;
@@ -222,9 +238,9 @@ export interface Project {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "projecttags".
+ * via the `definition` "projectTags".
  */
-export interface Projecttag {
+export interface ProjectTag {
   id: string;
   name: string;
   updatedAt: string;
@@ -257,6 +273,32 @@ export interface Video {
   height?: number | null;
   focalX?: number | null;
   focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "expenses".
+ */
+export interface Expense {
+  id: string;
+  amount?: number | null;
+  category?:
+    | ('food' | 'shelter' | 'transport' | 'health' | 'Fitness' | 'education' | 'business' | 'wife' | 'non-essential')
+    | null;
+  tags?: (string | null) | ExpenseTag;
+  comment?: string | null;
+  date?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "expenseTags".
+ */
+export interface ExpenseTag {
+  id: string;
+  name: string;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

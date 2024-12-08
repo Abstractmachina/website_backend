@@ -3,6 +3,7 @@ import TestView2 from "@/views/TestView2";
 import { CollectionConfig } from "payload/types";
 import dateFormat, { masks } from "dateformat";
 import SaveAndCloseButton from "@/components/ui/SaveAndCloseButton";
+import ExpensesList from "./Expenses/ExpensesList";
 
 
 const Expenses: CollectionConfig = {
@@ -17,9 +18,15 @@ const Expenses: CollectionConfig = {
     components: {
       edit: {
         SaveButton: SaveAndCloseButton,
+      },
+      views: {
+        List: ExpensesList,
       }
-    }
+    },
+    pagination: {
+      defaultLimit: 30,
 
+    }
     //   views: {
     //     Edit: {
     //       // MyCustomTab: {

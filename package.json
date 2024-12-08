@@ -24,6 +24,7 @@
     "@payloadcms/richtext-slate": "^1.0.0",
     "@radix-ui/react-slot": "^1.1.0",
     "@radix-ui/react-tabs": "^1.1.1",
+    "@tanstack/react-table": "^8.20.5",
     "autoprefixer": "^10.4.20",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
